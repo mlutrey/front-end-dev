@@ -1,0 +1,71 @@
+body {
+	font-size: 16pt;
+	font-family: 'Rubik', sans-serif;
+}
+
+#header-nav {
+	background-color: #A9A9A9;
+	border: black solid 2px;
+	border-radius: 0;
+}
+
+#header-nav h1 {
+	color:black;
+	font-size:1.4em;
+	margin: 10px 0 15px;
+}
+
+#header-nav button.navbar-toggle {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+	border: black 2px solid;
+}
+
+#header-nav .icon-bar{
+	background-color: black;
+}
+
+#collapsable-menu ul{
+	margin-top: 0;
+	margin-bottom: 0;
+	background: white;
+}
+
+#collapsable-menu a:hover{
+	background: pink;
+}
+
+#collapsable-menu ul li:nth-child(1) {
+	border-top:black solid 3px;
+}
+
+#collapsable-menu li {
+	border:black solid 1px;
+}
+
+#collapsable-menu a {
+	color:black;
+}
+
+#our-menu-heading {
+	margin-bottom: -20px;
+}
+
+.menu-section {
+	font-size: .8em;
+	height: 700px;
+	margin-top: 30px;
+}
+
+.menu-section div {
+	background-color: #A9A9A9;
+	height:100%;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.menu-section h3 {
+	font-size: 1.4em;
+	padding-top:5px;
+}
