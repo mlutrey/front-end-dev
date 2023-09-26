@@ -62,14 +62,36 @@
       helloSpeaker.speak(names[name]);
     }
 
-    // Use the map function to create an array based on the names array. This array
-    // will contain the greetings based on the names, with the same rules as previously
-    // implemented.
-    // The function passwed into the map function should not be an inline function (ie
-    // separate it into its own named function and pass it into the map function as a value.)
-
-    // The map() method is an iterative method. It calls a provided callbackFn function 
-    // once for each element in an array and constructs a new array from the results.
-
   }
+  
+  // ADDITIONAL REQUIREMENT
+  // In script.js, use the map function to create an array based on the names array.
+  // This array will contain the greetings based on the names with the same rules as 
+  // implemented previously.
+  //
+  // The function passed into the map function should not be an inline function (ie
+  // separate it into its own named function and pass it into the map function as a value.)
+  const namesMap = names.map((x) => letterCheck(x));
+  console.log(namesMap);
 })();
+
+// ADDITIONAL REQUIREMENT
+// In script.js, use the map function to create an array based on the names array.
+// This array will contain the greetings based on the names with the same rules as 
+// implemented previously.
+//
+// The function passed into the map function should not be an inline function (ie
+// separate it into its own named function and pass it into the map function as a value.)
+//
+// The end result should be that the list prints out twice in the browser console
+function letterCheck(name) {
+    var firstLetter = name.charAt(0).toLowerCase();
+
+    if (firstLetter == 'j') {
+      byeSpeaker.speak(name);
+      return byeSpeaker.speakSimple(name);
+    } else {
+      helloSpeaker.speak(name);
+      return helloSpeaker.speakSimple(name);
+    }
+}
