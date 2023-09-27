@@ -72,7 +72,6 @@
   // The function passed into the map function should not be an inline function (ie
   // separate it into its own named function and pass it into the map function as a value.)
   const namesMap = names.map((x) => letterCheck(x));
-  console.log(namesMap);
 })();
 
 // ADDITIONAL REQUIREMENT
