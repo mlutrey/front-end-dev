@@ -71,7 +71,25 @@
   //
   // The function passed into the map function should not be an inline function (ie
   // separate it into its own named function and pass it into the map function as a value.)
+  //
+  // The end result should be that the list prints out again in the browser console.
   const namesMap = names.map((x) => letterCheck(x));
+  for (var n in namesMap) {
+    console.log(namesMap[n]);
+  }
+  
+  // BONUS/OPTIONAL
+  // Use the reduce function to create 2 separate arrays: one with all the ‘hello’ greetings
+  // and another with all the 'good bye' greetings.
+  var newArrays = names.reduce(splitArrays, {"hello": [], "bye": []});
+  // Then, loop over each array (obviously separately) and print out the greetings to the 
+  // console with console.log
+  for (var i in newArrays["hello"]) {
+    console.log(newArrays["hello"][i]);
+  }
+  for (var j in newArrays["bye"]) {
+    console.log(newArrays["bye"][j]);
+  }
 })();
 
 // ADDITIONAL REQUIREMENT
@@ -81,16 +99,24 @@
 //
 // The function passed into the map function should not be an inline function (ie
 // separate it into its own named function and pass it into the map function as a value.)
-//
-// The end result should be that the list prints out twice in the browser console
 function letterCheck(name) {
     var firstLetter = name.charAt(0).toLowerCase();
 
     if (firstLetter == 'j') {
-      byeSpeaker.speak(name);
       return byeSpeaker.speakSimple(name);
     } else {
-      helloSpeaker.speak(name);
       return helloSpeaker.speakSimple(name);
     }
+}
+
+// BONUS/OPTIONAL
+function splitArrays(namesArray, name) {
+    var firstLetter = name.charAt(0).toLowerCase();
+
+    if (firstLetter == 'j') {
+      namesArray["bye"].push(byeSpeaker.speakSimple(name));
+    } else {
+      namesArray["hello"].push(helloSpeaker.speakSimple(name));
+    }
+    return namesArray;  
 }
