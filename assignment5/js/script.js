@@ -11,6 +11,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
 (function (global) {
 
+// name space
 var dc = {};
 
 var homeHtmlUrl = "snippets/home-snippet.html";
@@ -22,6 +23,7 @@ var menuItemsUrl =
   "https://coursera-jhu-default-rtdb.firebaseio.com/menu_items/";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
+var aboutHtml = "snippets/about.html";
 
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
@@ -141,6 +143,42 @@ function chooseRandomCategory (categories) {
   return categories[randomArrayIndex];
 }
 
+// load the about view
+dc.loadAboutRating = function () {
+  // Retrieve about snippet
+  $ajaxUtils.sendGetRequest(
+    aboutHtml,
+    function (aboutHtml) {
+      var starRating = randomNumber(1,5);
+      var aboutViewHtml = buildAboutViewHtml(aboutHtml, starRating);
+      insertHtml("#main-content", aboutViewHtml);
+    },
+    false);
+}
+
+// Produces a random integer from min to max (inclusive)
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * max) + min;
+}
+
+// Build the star rating
+function buildAboutViewHtml (aboutHtml, starRating) {
+  var filledStar = "fa fa-star";
+  var emptyStar  = "fa fa-star-o";
+
+  // The first star will always be filled
+  aboutViewHtml = insertProperty(aboutHtml, "class1", filledStar);
+  for (var i = 2; i <= 5; i++) {
+    var classNum = "class" + i;
+    if (i <= starRating) {
+      aboutViewHtml = insertProperty(aboutViewHtml, classNum, filledStar);
+    } else {
+      aboutViewHtml = insertProperty(aboutViewHtml, classNum, emptyStar);
+    }
+  }
+  aboutViewHtml = insertProperty(aboutViewHtml, "numStars", starRating);
+  return aboutViewHtml;
+}
 
 // Load the menu categories view
 dc.loadMenuCategories = function () {
@@ -150,7 +188,6 @@ dc.loadMenuCategories = function () {
     buildAndShowCategoriesHTML);
 };
 
-
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
 dc.loadMenuItems = function (categoryShort) {
@@ -159,7 +196,6 @@ dc.loadMenuItems = function (categoryShort) {
     menuItemsUrl + categoryShort + ".json",
     buildAndShowMenuItemsHTML);
 };
-
 
 // Builds HTML for the categories page based on the data
 // from the server
