@@ -5,8 +5,7 @@
 	.controller("ToBuyController", ToBuyController)
 	.controller("AlreadyBoughtController", AlreadyBoughtController)
 	.service('ShoppingListCheckOffService',ShoppingListCheckOffService)
-	.filter('showBuyItem', ShowBuyItemFilterFactory)
-	.filter('showBoughtItem', ShowBoughtItemFilterFactory);
+	.filter('showTotalPrice', ShowTotalPriceFilterFactory);
 
 	ToBuyController.$inject = ['ShoppingListCheckOffService'];
 	function ToBuyController(ShoppingListCheckOffService) {
@@ -33,12 +32,12 @@
 			{
 				name: "cookies", 
 				quantity: 10, 
-				pricePerItem: .75
+				pricePerItem: 2
 			},
 			{
 				name: "milk cartons", 
 				quantity: 2, 
-				pricePerItem: 3
+				pricePerItem: 4
 			},
 			{
 				name: "cakes", 
@@ -48,12 +47,12 @@
 			{
 				name: "cheese sticks", 
 				quantity: 15, 
-				pricePerItem: .5
+				pricePerItem: 1
 			},
 			{
 				name: "yogurts",
 				quantity: 5, 
-				pricePerItem: 1.5
+				pricePerItem: 3
 			}
 		];
 
@@ -73,28 +72,11 @@
 		};
 	}
 
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-
-	function ShowBuyItemFilterFactory() {
-		return function (input) {
-			var output = "Buy " + input.quantity + " " + input.name;
-			return output;
-		}
-	}
-
-	function ShowBoughtItemFilterFactory() {
+	function ShowTotalPriceFilterFactory() {
 		return function (input) {
 			var totalPrice = input.quantity * input.pricePerItem;
-			var output = "Bought " + input.quantity + " of " + input.name + " for total price of " + "$$$" + input.pricePerItem;
+			var output = "$$$" + totalPrice + ".00";
  		return output;
-		}
-	}
-
-	function CalculateTotalPrice() {
-		return function (input) {
-			var totalPrice = input.quantity * input.pricePerItem;
-			return totalPrice;
 		}
 	}
 
