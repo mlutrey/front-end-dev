@@ -1,0 +1,137 @@
+<fieldset style="text-align: left;margin-left:50px;">
+  <legend>Sign Up For Our Newsletter!</legend>
+  <form name='signupForm' novalidate>
+
+    <input type="text" name="fname" placeholder="First Name"
+      ng-model="signupCtrl.user.fname"
+      required
+      minlength="2"
+      ng-maxlength="15">
+      <span
+        ng-if="(signupForm.fname.$error.minlength || signupForm.fname.$error.required) && signupForm.fname.$touched">
+        First name must be at least 2 characters long
+      </span>
+      <span ng-if="signupForm.fname.$error.maxlength && signupForm.fname.$touched">
+        First name must not be longer than 15 characters
+      </span>
+      <br>
+
+    <input type="text" name="lname" placeholder="Last Name"
+      ng-model="signupCtrl.user.lname"
+      required
+      minlength="2"
+      ng-maxlength="15">
+      <span
+        ng-if="(signupForm.lname.$error.minlength || signupForm.lname.$error.required) && signupForm.lname.$touched">
+        Last name must be at least 2 characters long
+      </span>
+      <span ng-if="signupForm.fname.$error.maxlength && signupForm.fname.$touched">
+        Last name must not be longer than 15 characters
+      </span>
+      <br>
+
+    <input type="email" name="email" placeholder="Email"
+      ng-model="signupCtrl.user.email"
+      required>
+      <span ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+        Must be a valid email address: handle@domain format
+      </span>
+      <br>
+
+    <input type="text" name="phone" placeholder="Phone ###-###-####"
+      ng-model="signupCtrl.user.phone"
+      pattern="(\d{3})-(\d{3})-(\d{4})"
+      required>
+      <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+        Phone must be in the format ###-###-####.
+      </span>
+      <br>
+
+    <input type="text" name="faveDishShortName" placeholder="Menu # of Favorite Dish"
+      ng-model="signupCtrl.user.faveDishShortName"
+      required>
+      <span ng-if="signupCtrl.invalidFaveItem">
+        No such menu number exists.
+      </span>      
+      <br>
+
+    <button
+      ng-disabled="signupForm.$invalid"
+      ng-click="signupCtrl.submit()">Submit</button>
+
+      <span style="margin-top: 10px;" ng-if="signupForm.$invalid">
+        * To submit, all fields must be complete
+      </span>
+  </form>
+</fieldset>
+
+<div id="info" ng-if="signupCtrl.signupComplete" style="text-align: left;margin-left:50px; font-size: 20px;">
+	Your information has been saved.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form name="signup" novalidate style="text-align: left;">
+	<table style="margin-left: 300px">
+		<tr>
+			<td> <label for="fname">First Name:</label> </td>
+			<td> <input type="text" id="fname" name="fname" ng-model="ctrl.fname" required min-length="2"> </td>
+		</tr>
+		<tr>		
+			<td> <label for="lname">Last Name:</label> </td>
+			<td> <input type="text" id="lname" name="lname" ng-model="ctrl.lname" required min-length="2"> </td>
+		</tr>
+		
+		<tr>
+			<td> <label for="email">Email:</label> </td>
+			<td> <input type="email" id="email" name="email" ng-model="ctrl.email" required> </td>
+		</tr>
+
+		<tr>
+			<td> <label for="telnum">Phone Number:</label> </td>
+			<td> <input type="tel" id="telnum" name="telnum" ng-model="ctrl.telnum" required> </td>
+		</tr>
+
+		<tr>
+			<td> <label for="favitem">Favorite Menu Item:</label> </td>
+			<td> <input type="text" id="favitem" name="favitem" required max-length="2"> </td>	
+		</tr>
+
+		<tr>
+			<td> </td>
+			<td> <button ng-disabled='signup.$invalid' ng-click="ctrl.go()" style="color: black;">Submit</button> </td>
+		</tr>
+	</table>
+
+	<span ng-if="signup.fname.$error.required && signup.fname.$touched">
+		First name is required
+	</span>
+	<span ng-if="signup.lname.$error.required && signup.lname.$touched">
+		Last name is required
+	</span>
+	<span ng-if="signup.email.$error.required && signup.email.$touched">
+		Email is required
+	</span>
+	<span ng-if="signup.telnum.$error.required && signup.telnum.$touched">
+		Phone number is required
+	</span>
+	<span ng-if="signup.favitem.$error.required && signup.favitem.$touched">
+		Favorite menu item is required
+	</span>	
+</form> -->

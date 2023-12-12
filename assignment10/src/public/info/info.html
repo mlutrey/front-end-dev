@@ -1,0 +1,28 @@
+<div id="info" ng-if="infoCtrl.signupComplete" style="text-align: left;margin-left:50px; font-size: 20px;" class="container">
+  <h3>Registered Information:</h3>
+  First Name: {{ infoCtrl.user.fname}} <br>
+  Last Name: {{ infoCtrl.user.lname}} <br>
+  Email: {{ infoCtrl.user.email}} <br>
+  Phone: {{ infoCtrl.user.phone }} <br>
+  Favorite Dish: <br>
+  <div class="menu-item-tile col-md-6">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="menu-item-photo">
+          <div>{{infoCtrl.user.faveDish.obj.short_name}}</div>
+          <img class="img-responsive" width="250" height="150" ng-src="images/menu/{{infoCtrl.user.faveDish.category}}/{{infoCtrl.user.faveDish.obj.short_name}}.jpg" alt="{{infoCtrl.user.faveDish.obj.name}}">
+        </div>
+      </div>
+      <div class="menu-item-description col-sm-7">
+        <h3 class="menu-item-title">{{infoCtrl.user.faveDish.obj.name}}</h3>
+        <p class="menu-item-details">{{infoCtrl.user.faveDish.obj.description}}</p>
+      </div>
+    </div>
+    <hr class="visible-xs">
+  </div>  
+</div>
+
+
+<div id="info" ng-if="!infoCtrl.signupComplete" style="text-align: left;margin-left:50px; font-size: 20px;">
+     Not Signed Up Yet. <a ui-sref="public.signup"> Sign up Now! </a>
+</div>
