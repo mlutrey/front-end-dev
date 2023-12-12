@@ -49,14 +49,15 @@
 
     <input type="text" name="faveDishShortName" placeholder="Menu # of Favorite Dish"
       ng-model="signupCtrl.user.faveDishShortName"
+      ng-blur="signupCtrl.checkFaveDishValidity()"
       required>
       <span ng-if="signupCtrl.invalidFaveItem">
         No such menu number exists.
-      </span>      
+      </span>
       <br>
 
     <button
-      ng-disabled="signupForm.$invalid"
+      ng-disabled="signupForm.$invalid || signupCtrl.invalidFaveItem"
       ng-click="signupCtrl.submit()">Submit</button>
 
       <span style="margin-top: 10px;" ng-if="signupForm.$invalid">

@@ -24,7 +24,23 @@ function SignupController(MenuService) {
     })
     .catch(function (error) {
       console.log("Something went wrong");
-    })    
+    })
+  };
+
+  $ctrl.checkFaveDishValidity = function () {
+
+    if ($ctrl.user.faveDishShortName != undefined) {
+      MenuService.getFavoriteMenuItem($ctrl.user.faveDishShortName).then(function (response) {
+        if (angular.equals(response, {})) {
+          $ctrl.invalidFaveItem = true;
+        } else {
+          $ctrl.invalidFaveItem = false;
+        }
+      })
+      .catch(function (error) {
+        console.log("Something went wrong");
+      })
+    }
   };
 };
 
