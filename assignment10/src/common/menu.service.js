@@ -41,6 +41,24 @@ function MenuService($http, ApiPath) {
      });
   };
 
+  service.menuItemExists = function(short_name) {
+     return $http.get(ApiPath + '/menu_items.json').then(function (response) {
+       var data = response.data; // ALL menu items
+       var itemExists = false;
+
+        // process result and try to find menu item
+        for (var category_index in data) {
+          for (var item_index in data[category_index].menu_items) {
+            if (data[category_index].menu_items[item_index].short_name == short_name) {
+              itemExists = true;
+              break;
+            }
+          }
+        }
+      return itemExists;
+     });
+  };
+
   service.saveUser = function(user) {
     service.user = angular.copy(user);
   }

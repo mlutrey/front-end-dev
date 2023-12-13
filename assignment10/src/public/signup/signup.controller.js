@@ -30,8 +30,8 @@ function SignupController(MenuService) {
   $ctrl.checkFaveDishValidity = function () {
 
     if ($ctrl.user.faveDishShortName != undefined) {
-      MenuService.getFavoriteMenuItem($ctrl.user.faveDishShortName).then(function (response) {
-        if (angular.equals(response, {})) {
+      MenuService.menuItemExists($ctrl.user.faveDishShortName).then(function (response) {
+        if (angular.equals(response, false)) {
           $ctrl.invalidFaveItem = true;
         } else {
           $ctrl.invalidFaveItem = false;
