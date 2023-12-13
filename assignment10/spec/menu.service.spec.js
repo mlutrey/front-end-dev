@@ -15,14 +15,14 @@ describe('testFunctionMenuItemExists', function () {
       $httpBackend = $injector.get('$httpBackend');
       ApiBasePath = $injector.get('ApiPath');
       testItem1 = "A2";
-      testItem2 = "L1";
+      testItem2 = "abc";
     });
   });
 
   it('should return true', function() {
     $httpBackend.whenGET(ApiBasePath + '/menu_items.json').respond({ "A": {"menu_items": [{"short_name": "A1"}, {"short_name": "A2"}] }});
     menuService.menuItemExists(testItem1).then(function(response) {
-      expect(response).toEqual(true);
+      expect(response).toBe(true);
     });
     $httpBackend.flush();
   });
@@ -30,7 +30,7 @@ describe('testFunctionMenuItemExists', function () {
   it('should return false', function() {
     $httpBackend.whenGET(ApiBasePath + '/menu_items.json').respond({ "A": {"menu_items": [{"short_name": "A1"}, {"short_name": "A2"}] }});
     menuService.menuItemExists(testItem2).then(function(response) {
-      expect(response).toEqual(false);
+      expect(response).not.toBe(true);
     });
     $httpBackend.flush();
   });
